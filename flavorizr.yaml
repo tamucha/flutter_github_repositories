@@ -1,0 +1,18 @@
+flavors:
+  product:
+    app:
+      name: "We love GitHub!"
+
+    android:
+      applicationId: "com.example.github"
+    ios:
+      bundleId: "com.example.github"
+
+  staging:
+    app:
+      name: "We love GitHub! For Stg"
+
+    android:
+      applicationId: "com.example.github.stg"
+    ios:
+      bundleId: "com.example.github.stg"

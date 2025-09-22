@@ -1,0 +1,5 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"
+#include "Generated.xcconfig"
+
+BUNDLE_NAME=We love GitHub! For Stg
+BUNDLE_DISPLAY_NAME=We love GitHub! For Stg
