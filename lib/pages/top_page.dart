@@ -1,8 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../flavors.dart';
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class TopPage extends StatelessWidget {
+  const TopPage({super.key});
 
   @override
   Widget build(BuildContext context) {
