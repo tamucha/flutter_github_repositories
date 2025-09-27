@@ -13,7 +13,9 @@ class ApiClient {
     Map<String, dynamic>? queryParams,
   ) async {
     try {
-      log('[GET] https://${domain}/${path}');
+      log(
+        '[GET] https://${domain}/${queryParams != null ? '?${Uri(queryParameters: queryParams).query}' : ''}',
+      );
       var response = await client.get(Uri.https(domain, path, queryParams));
       return _parseResponse(response);
     } finally {

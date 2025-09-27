@@ -17,8 +17,8 @@ mixin _$GithubRepository {
 
 // ID
  int get id;// リポジトリ名
- String get name;// オーナーアイコン
- Uri? get avatarUrl;// プロジェクト言語
+ String get name;// オーナー
+ Owner get owner;// プロジェクト言語
  String? get language;// Star 数
  int? get stargazersCount;// Watcher 数
  int? get watchersCount;// Fork 数
@@ -36,16 +36,16 @@ $GithubRepositoryCopyWith<GithubRepository> get copyWith => _$GithubRepositoryCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GithubRepository&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.language, language) || other.language == language)&&(identical(other.stargazersCount, stargazersCount) || other.stargazersCount == stargazersCount)&&(identical(other.watchersCount, watchersCount) || other.watchersCount == watchersCount)&&(identical(other.forksCount, forksCount) || other.forksCount == forksCount)&&(identical(other.openIssuesCount, openIssuesCount) || other.openIssuesCount == openIssuesCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GithubRepository&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.owner, owner) || other.owner == owner)&&(identical(other.language, language) || other.language == language)&&(identical(other.stargazersCount, stargazersCount) || other.stargazersCount == stargazersCount)&&(identical(other.watchersCount, watchersCount) || other.watchersCount == watchersCount)&&(identical(other.forksCount, forksCount) || other.forksCount == forksCount)&&(identical(other.openIssuesCount, openIssuesCount) || other.openIssuesCount == openIssuesCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,avatarUrl,language,stargazersCount,watchersCount,forksCount,openIssuesCount);
+int get hashCode => Object.hash(runtimeType,id,name,owner,language,stargazersCount,watchersCount,forksCount,openIssuesCount);
 
 @override
 String toString() {
-  return 'GithubRepository(id: $id, name: $name, avatarUrl: $avatarUrl, language: $language, stargazersCount: $stargazersCount, watchersCount: $watchersCount, forksCount: $forksCount, openIssuesCount: $openIssuesCount)';
+  return 'GithubRepository(id: $id, name: $name, owner: $owner, language: $language, stargazersCount: $stargazersCount, watchersCount: $watchersCount, forksCount: $forksCount, openIssuesCount: $openIssuesCount)';
 }
 
 
@@ -56,11 +56,11 @@ abstract mixin class $GithubRepositoryCopyWith<$Res>  {
   factory $GithubRepositoryCopyWith(GithubRepository value, $Res Function(GithubRepository) _then) = _$GithubRepositoryCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, Uri? avatarUrl, String? language, int? stargazersCount, int? watchersCount, int? forksCount, int? openIssuesCount
+ int id, String name, Owner owner, String? language, int? stargazersCount, int? watchersCount, int? forksCount, int? openIssuesCount
 });
 
 
-
+$OwnerCopyWith<$Res> get owner;
 
 }
 /// @nodoc
@@ -73,12 +73,12 @@ class _$GithubRepositoryCopyWithImpl<$Res>
 
 /// Create a copy of GithubRepository
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? avatarUrl = freezed,Object? language = freezed,Object? stargazersCount = freezed,Object? watchersCount = freezed,Object? forksCount = freezed,Object? openIssuesCount = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? owner = null,Object? language = freezed,Object? stargazersCount = freezed,Object? watchersCount = freezed,Object? forksCount = freezed,Object? openIssuesCount = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as Uri?,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,owner: null == owner ? _self.owner : owner // ignore: cast_nullable_to_non_nullable
+as Owner,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
 as String?,stargazersCount: freezed == stargazersCount ? _self.stargazersCount : stargazersCount // ignore: cast_nullable_to_non_nullable
 as int?,watchersCount: freezed == watchersCount ? _self.watchersCount : watchersCount // ignore: cast_nullable_to_non_nullable
 as int?,forksCount: freezed == forksCount ? _self.forksCount : forksCount // ignore: cast_nullable_to_non_nullable
@@ -86,7 +86,16 @@ as int?,openIssuesCount: freezed == openIssuesCount ? _self.openIssuesCount : op
 as int?,
   ));
 }
-
+/// Create a copy of GithubRepository
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$OwnerCopyWith<$Res> get owner {
+  
+  return $OwnerCopyWith<$Res>(_self.owner, (value) {
+    return _then(_self.copyWith(owner: value));
+  });
+}
 }
 
 
@@ -168,10 +177,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  Uri? avatarUrl,  String? language,  int? stargazersCount,  int? watchersCount,  int? forksCount,  int? openIssuesCount)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  Owner owner,  String? language,  int? stargazersCount,  int? watchersCount,  int? forksCount,  int? openIssuesCount)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GithubRepository() when $default != null:
-return $default(_that.id,_that.name,_that.avatarUrl,_that.language,_that.stargazersCount,_that.watchersCount,_that.forksCount,_that.openIssuesCount);case _:
+return $default(_that.id,_that.name,_that.owner,_that.language,_that.stargazersCount,_that.watchersCount,_that.forksCount,_that.openIssuesCount);case _:
   return orElse();
 
 }
@@ -189,10 +198,10 @@ return $default(_that.id,_that.name,_that.avatarUrl,_that.language,_that.stargaz
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  Uri? avatarUrl,  String? language,  int? stargazersCount,  int? watchersCount,  int? forksCount,  int? openIssuesCount)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  Owner owner,  String? language,  int? stargazersCount,  int? watchersCount,  int? forksCount,  int? openIssuesCount)  $default,) {final _that = this;
 switch (_that) {
 case _GithubRepository():
-return $default(_that.id,_that.name,_that.avatarUrl,_that.language,_that.stargazersCount,_that.watchersCount,_that.forksCount,_that.openIssuesCount);case _:
+return $default(_that.id,_that.name,_that.owner,_that.language,_that.stargazersCount,_that.watchersCount,_that.forksCount,_that.openIssuesCount);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -209,10 +218,10 @@ return $default(_that.id,_that.name,_that.avatarUrl,_that.language,_that.stargaz
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  Uri? avatarUrl,  String? language,  int? stargazersCount,  int? watchersCount,  int? forksCount,  int? openIssuesCount)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  Owner owner,  String? language,  int? stargazersCount,  int? watchersCount,  int? forksCount,  int? openIssuesCount)?  $default,) {final _that = this;
 switch (_that) {
 case _GithubRepository() when $default != null:
-return $default(_that.id,_that.name,_that.avatarUrl,_that.language,_that.stargazersCount,_that.watchersCount,_that.forksCount,_that.openIssuesCount);case _:
+return $default(_that.id,_that.name,_that.owner,_that.language,_that.stargazersCount,_that.watchersCount,_that.forksCount,_that.openIssuesCount);case _:
   return null;
 
 }
@@ -224,15 +233,15 @@ return $default(_that.id,_that.name,_that.avatarUrl,_that.language,_that.stargaz
 @JsonSerializable()
 
 class _GithubRepository implements GithubRepository {
-  const _GithubRepository({required this.id, required this.name, required this.avatarUrl, required this.language, required this.stargazersCount, required this.watchersCount, required this.forksCount, required this.openIssuesCount});
+  const _GithubRepository({required this.id, required this.name, required this.owner, required this.language, required this.stargazersCount, required this.watchersCount, required this.forksCount, required this.openIssuesCount});
   factory _GithubRepository.fromJson(Map<String, dynamic> json) => _$GithubRepositoryFromJson(json);
 
 // ID
 @override final  int id;
 // リポジトリ名
 @override final  String name;
-// オーナーアイコン
-@override final  Uri? avatarUrl;
+// オーナー
+@override final  Owner owner;
 // プロジェクト言語
 @override final  String? language;
 // Star 数
@@ -257,16 +266,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GithubRepository&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.language, language) || other.language == language)&&(identical(other.stargazersCount, stargazersCount) || other.stargazersCount == stargazersCount)&&(identical(other.watchersCount, watchersCount) || other.watchersCount == watchersCount)&&(identical(other.forksCount, forksCount) || other.forksCount == forksCount)&&(identical(other.openIssuesCount, openIssuesCount) || other.openIssuesCount == openIssuesCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GithubRepository&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.owner, owner) || other.owner == owner)&&(identical(other.language, language) || other.language == language)&&(identical(other.stargazersCount, stargazersCount) || other.stargazersCount == stargazersCount)&&(identical(other.watchersCount, watchersCount) || other.watchersCount == watchersCount)&&(identical(other.forksCount, forksCount) || other.forksCount == forksCount)&&(identical(other.openIssuesCount, openIssuesCount) || other.openIssuesCount == openIssuesCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,avatarUrl,language,stargazersCount,watchersCount,forksCount,openIssuesCount);
+int get hashCode => Object.hash(runtimeType,id,name,owner,language,stargazersCount,watchersCount,forksCount,openIssuesCount);
 
 @override
 String toString() {
-  return 'GithubRepository(id: $id, name: $name, avatarUrl: $avatarUrl, language: $language, stargazersCount: $stargazersCount, watchersCount: $watchersCount, forksCount: $forksCount, openIssuesCount: $openIssuesCount)';
+  return 'GithubRepository(id: $id, name: $name, owner: $owner, language: $language, stargazersCount: $stargazersCount, watchersCount: $watchersCount, forksCount: $forksCount, openIssuesCount: $openIssuesCount)';
 }
 
 
@@ -277,11 +286,11 @@ abstract mixin class _$GithubRepositoryCopyWith<$Res> implements $GithubReposito
   factory _$GithubRepositoryCopyWith(_GithubRepository value, $Res Function(_GithubRepository) _then) = __$GithubRepositoryCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name, Uri? avatarUrl, String? language, int? stargazersCount, int? watchersCount, int? forksCount, int? openIssuesCount
+ int id, String name, Owner owner, String? language, int? stargazersCount, int? watchersCount, int? forksCount, int? openIssuesCount
 });
 
 
-
+@override $OwnerCopyWith<$Res> get owner;
 
 }
 /// @nodoc
@@ -294,17 +303,292 @@ class __$GithubRepositoryCopyWithImpl<$Res>
 
 /// Create a copy of GithubRepository
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? avatarUrl = freezed,Object? language = freezed,Object? stargazersCount = freezed,Object? watchersCount = freezed,Object? forksCount = freezed,Object? openIssuesCount = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? owner = null,Object? language = freezed,Object? stargazersCount = freezed,Object? watchersCount = freezed,Object? forksCount = freezed,Object? openIssuesCount = freezed,}) {
   return _then(_GithubRepository(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as Uri?,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,owner: null == owner ? _self.owner : owner // ignore: cast_nullable_to_non_nullable
+as Owner,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
 as String?,stargazersCount: freezed == stargazersCount ? _self.stargazersCount : stargazersCount // ignore: cast_nullable_to_non_nullable
 as int?,watchersCount: freezed == watchersCount ? _self.watchersCount : watchersCount // ignore: cast_nullable_to_non_nullable
 as int?,forksCount: freezed == forksCount ? _self.forksCount : forksCount // ignore: cast_nullable_to_non_nullable
 as int?,openIssuesCount: freezed == openIssuesCount ? _self.openIssuesCount : openIssuesCount // ignore: cast_nullable_to_non_nullable
 as int?,
+  ));
+}
+
+/// Create a copy of GithubRepository
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$OwnerCopyWith<$Res> get owner {
+  
+  return $OwnerCopyWith<$Res>(_self.owner, (value) {
+    return _then(_self.copyWith(owner: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$Owner {
+
+ int get id; Uri? get avatarUrl;
+/// Create a copy of Owner
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$OwnerCopyWith<Owner> get copyWith => _$OwnerCopyWithImpl<Owner>(this as Owner, _$identity);
+
+  /// Serializes this Owner to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Owner&&(identical(other.id, id) || other.id == id)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,avatarUrl);
+
+@override
+String toString() {
+  return 'Owner(id: $id, avatarUrl: $avatarUrl)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $OwnerCopyWith<$Res>  {
+  factory $OwnerCopyWith(Owner value, $Res Function(Owner) _then) = _$OwnerCopyWithImpl;
+@useResult
+$Res call({
+ int id, Uri? avatarUrl
+});
+
+
+
+
+}
+/// @nodoc
+class _$OwnerCopyWithImpl<$Res>
+    implements $OwnerCopyWith<$Res> {
+  _$OwnerCopyWithImpl(this._self, this._then);
+
+  final Owner _self;
+  final $Res Function(Owner) _then;
+
+/// Create a copy of Owner
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? avatarUrl = freezed,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
+as Uri?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [Owner].
+extension OwnerPatterns on Owner {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Owner value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Owner() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Owner value)  $default,){
+final _that = this;
+switch (_that) {
+case _Owner():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Owner value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Owner() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  Uri? avatarUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Owner() when $default != null:
+return $default(_that.id,_that.avatarUrl);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  Uri? avatarUrl)  $default,) {final _that = this;
+switch (_that) {
+case _Owner():
+return $default(_that.id,_that.avatarUrl);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  Uri? avatarUrl)?  $default,) {final _that = this;
+switch (_that) {
+case _Owner() when $default != null:
+return $default(_that.id,_that.avatarUrl);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _Owner implements Owner {
+  const _Owner({required this.id, required this.avatarUrl});
+  factory _Owner.fromJson(Map<String, dynamic> json) => _$OwnerFromJson(json);
+
+@override final  int id;
+@override final  Uri? avatarUrl;
+
+/// Create a copy of Owner
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$OwnerCopyWith<_Owner> get copyWith => __$OwnerCopyWithImpl<_Owner>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$OwnerToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Owner&&(identical(other.id, id) || other.id == id)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,avatarUrl);
+
+@override
+String toString() {
+  return 'Owner(id: $id, avatarUrl: $avatarUrl)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$OwnerCopyWith<$Res> implements $OwnerCopyWith<$Res> {
+  factory _$OwnerCopyWith(_Owner value, $Res Function(_Owner) _then) = __$OwnerCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, Uri? avatarUrl
+});
+
+
+
+
+}
+/// @nodoc
+class __$OwnerCopyWithImpl<$Res>
+    implements _$OwnerCopyWith<$Res> {
+  __$OwnerCopyWithImpl(this._self, this._then);
+
+  final _Owner _self;
+  final $Res Function(_Owner) _then;
+
+/// Create a copy of Owner
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? avatarUrl = freezed,}) {
+  return _then(_Owner(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
+as Uri?,
   ));
 }
 
@@ -315,7 +599,7 @@ as int?,
 /// @nodoc
 mixin _$SearchGithubRepositoryResult {
 
- int? get totalCount; bool? get incompleteResults; List<GithubRepository> get items;
+ String? get keyword; int get page; int get totalCount; bool? get incompleteResults; List<GithubRepository> get items;
 /// Create a copy of SearchGithubRepositoryResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -328,16 +612,16 @@ $SearchGithubRepositoryResultCopyWith<SearchGithubRepositoryResult> get copyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchGithubRepositoryResult&&(identical(other.totalCount, totalCount) || other.totalCount == totalCount)&&(identical(other.incompleteResults, incompleteResults) || other.incompleteResults == incompleteResults)&&const DeepCollectionEquality().equals(other.items, items));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchGithubRepositoryResult&&(identical(other.keyword, keyword) || other.keyword == keyword)&&(identical(other.page, page) || other.page == page)&&(identical(other.totalCount, totalCount) || other.totalCount == totalCount)&&(identical(other.incompleteResults, incompleteResults) || other.incompleteResults == incompleteResults)&&const DeepCollectionEquality().equals(other.items, items));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,totalCount,incompleteResults,const DeepCollectionEquality().hash(items));
+int get hashCode => Object.hash(runtimeType,keyword,page,totalCount,incompleteResults,const DeepCollectionEquality().hash(items));
 
 @override
 String toString() {
-  return 'SearchGithubRepositoryResult(totalCount: $totalCount, incompleteResults: $incompleteResults, items: $items)';
+  return 'SearchGithubRepositoryResult(keyword: $keyword, page: $page, totalCount: $totalCount, incompleteResults: $incompleteResults, items: $items)';
 }
 
 
@@ -348,7 +632,7 @@ abstract mixin class $SearchGithubRepositoryResultCopyWith<$Res>  {
   factory $SearchGithubRepositoryResultCopyWith(SearchGithubRepositoryResult value, $Res Function(SearchGithubRepositoryResult) _then) = _$SearchGithubRepositoryResultCopyWithImpl;
 @useResult
 $Res call({
- int? totalCount, bool? incompleteResults, List<GithubRepository> items
+ String? keyword, int page, int totalCount, bool? incompleteResults, List<GithubRepository> items
 });
 
 
@@ -365,10 +649,12 @@ class _$SearchGithubRepositoryResultCopyWithImpl<$Res>
 
 /// Create a copy of SearchGithubRepositoryResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? totalCount = freezed,Object? incompleteResults = freezed,Object? items = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? keyword = freezed,Object? page = null,Object? totalCount = null,Object? incompleteResults = freezed,Object? items = null,}) {
   return _then(_self.copyWith(
-totalCount: freezed == totalCount ? _self.totalCount : totalCount // ignore: cast_nullable_to_non_nullable
-as int?,incompleteResults: freezed == incompleteResults ? _self.incompleteResults : incompleteResults // ignore: cast_nullable_to_non_nullable
+keyword: freezed == keyword ? _self.keyword : keyword // ignore: cast_nullable_to_non_nullable
+as String?,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as int,totalCount: null == totalCount ? _self.totalCount : totalCount // ignore: cast_nullable_to_non_nullable
+as int,incompleteResults: freezed == incompleteResults ? _self.incompleteResults : incompleteResults // ignore: cast_nullable_to_non_nullable
 as bool?,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
 as List<GithubRepository>,
   ));
@@ -455,10 +741,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? totalCount,  bool? incompleteResults,  List<GithubRepository> items)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? keyword,  int page,  int totalCount,  bool? incompleteResults,  List<GithubRepository> items)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SearchGithubRepositoryResult() when $default != null:
-return $default(_that.totalCount,_that.incompleteResults,_that.items);case _:
+return $default(_that.keyword,_that.page,_that.totalCount,_that.incompleteResults,_that.items);case _:
   return orElse();
 
 }
@@ -476,10 +762,10 @@ return $default(_that.totalCount,_that.incompleteResults,_that.items);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? totalCount,  bool? incompleteResults,  List<GithubRepository> items)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? keyword,  int page,  int totalCount,  bool? incompleteResults,  List<GithubRepository> items)  $default,) {final _that = this;
 switch (_that) {
 case _SearchGithubRepositoryResult():
-return $default(_that.totalCount,_that.incompleteResults,_that.items);case _:
+return $default(_that.keyword,_that.page,_that.totalCount,_that.incompleteResults,_that.items);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -496,10 +782,10 @@ return $default(_that.totalCount,_that.incompleteResults,_that.items);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? totalCount,  bool? incompleteResults,  List<GithubRepository> items)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? keyword,  int page,  int totalCount,  bool? incompleteResults,  List<GithubRepository> items)?  $default,) {final _that = this;
 switch (_that) {
 case _SearchGithubRepositoryResult() when $default != null:
-return $default(_that.totalCount,_that.incompleteResults,_that.items);case _:
+return $default(_that.keyword,_that.page,_that.totalCount,_that.incompleteResults,_that.items);case _:
   return null;
 
 }
@@ -511,10 +797,12 @@ return $default(_that.totalCount,_that.incompleteResults,_that.items);case _:
 @JsonSerializable()
 
 class _SearchGithubRepositoryResult implements SearchGithubRepositoryResult {
-  const _SearchGithubRepositoryResult({this.totalCount = 0, required this.incompleteResults, final  List<GithubRepository> items = const []}): _items = items;
+  const _SearchGithubRepositoryResult({required this.keyword, this.page = 1, this.totalCount = 0, required this.incompleteResults, final  List<GithubRepository> items = const []}): _items = items;
   factory _SearchGithubRepositoryResult.fromJson(Map<String, dynamic> json) => _$SearchGithubRepositoryResultFromJson(json);
 
-@override@JsonKey() final  int? totalCount;
+@override final  String? keyword;
+@override@JsonKey() final  int page;
+@override@JsonKey() final  int totalCount;
 @override final  bool? incompleteResults;
  final  List<GithubRepository> _items;
 @override@JsonKey() List<GithubRepository> get items {
@@ -537,16 +825,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchGithubRepositoryResult&&(identical(other.totalCount, totalCount) || other.totalCount == totalCount)&&(identical(other.incompleteResults, incompleteResults) || other.incompleteResults == incompleteResults)&&const DeepCollectionEquality().equals(other._items, _items));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchGithubRepositoryResult&&(identical(other.keyword, keyword) || other.keyword == keyword)&&(identical(other.page, page) || other.page == page)&&(identical(other.totalCount, totalCount) || other.totalCount == totalCount)&&(identical(other.incompleteResults, incompleteResults) || other.incompleteResults == incompleteResults)&&const DeepCollectionEquality().equals(other._items, _items));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,totalCount,incompleteResults,const DeepCollectionEquality().hash(_items));
+int get hashCode => Object.hash(runtimeType,keyword,page,totalCount,incompleteResults,const DeepCollectionEquality().hash(_items));
 
 @override
 String toString() {
-  return 'SearchGithubRepositoryResult(totalCount: $totalCount, incompleteResults: $incompleteResults, items: $items)';
+  return 'SearchGithubRepositoryResult(keyword: $keyword, page: $page, totalCount: $totalCount, incompleteResults: $incompleteResults, items: $items)';
 }
 
 
@@ -557,7 +845,7 @@ abstract mixin class _$SearchGithubRepositoryResultCopyWith<$Res> implements $Se
   factory _$SearchGithubRepositoryResultCopyWith(_SearchGithubRepositoryResult value, $Res Function(_SearchGithubRepositoryResult) _then) = __$SearchGithubRepositoryResultCopyWithImpl;
 @override @useResult
 $Res call({
- int? totalCount, bool? incompleteResults, List<GithubRepository> items
+ String? keyword, int page, int totalCount, bool? incompleteResults, List<GithubRepository> items
 });
 
 
@@ -574,10 +862,12 @@ class __$SearchGithubRepositoryResultCopyWithImpl<$Res>
 
 /// Create a copy of SearchGithubRepositoryResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? totalCount = freezed,Object? incompleteResults = freezed,Object? items = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? keyword = freezed,Object? page = null,Object? totalCount = null,Object? incompleteResults = freezed,Object? items = null,}) {
   return _then(_SearchGithubRepositoryResult(
-totalCount: freezed == totalCount ? _self.totalCount : totalCount // ignore: cast_nullable_to_non_nullable
-as int?,incompleteResults: freezed == incompleteResults ? _self.incompleteResults : incompleteResults // ignore: cast_nullable_to_non_nullable
+keyword: freezed == keyword ? _self.keyword : keyword // ignore: cast_nullable_to_non_nullable
+as String?,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as int,totalCount: null == totalCount ? _self.totalCount : totalCount // ignore: cast_nullable_to_non_nullable
+as int,incompleteResults: freezed == incompleteResults ? _self.incompleteResults : incompleteResults // ignore: cast_nullable_to_non_nullable
 as bool?,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
 as List<GithubRepository>,
   ));

@@ -10,8 +10,8 @@ abstract class GithubRepository with _$GithubRepository {
     required int id,
     // リポジトリ名
     required String name,
-    // オーナーアイコン
-    required Uri? avatarUrl,
+    // オーナー
+    required Owner owner,
     // プロジェクト言語
     required String? language,
     // Star 数
@@ -28,11 +28,20 @@ abstract class GithubRepository with _$GithubRepository {
       _$GithubRepositoryFromJson(json);
 }
 
-@Freezed(unionKey: 'type', unionValueCase: FreezedUnionCase.pascal)
+@freezed
+abstract class Owner with _$Owner {
+  const factory Owner({required int id, required Uri? avatarUrl}) = _Owner;
+
+  factory Owner.fromJson(Map<String, Object?> json) => _$OwnerFromJson(json);
+}
+
+@freezed
 abstract class SearchGithubRepositoryResult
     with _$SearchGithubRepositoryResult {
   const factory SearchGithubRepositoryResult({
-    @Default(0) int? totalCount,
+    required String? keyword,
+    @Default(1) int page,
+    @Default(0) int totalCount,
     required bool? incompleteResults,
     @Default([]) List<GithubRepository> items,
   }) = _SearchGithubRepositoryResult;
