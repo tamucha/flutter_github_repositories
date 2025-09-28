@@ -1,0 +1,6 @@
+{
+  "helloWorld": "こんにちは世界！",
+  "searchRepositories": "リポジトリを検索",
+  "pleaseSearchRepositories": "リポジトリを検索してください",
+  "noMatchingRepositories": "該当するリポジトリがありません"
+}

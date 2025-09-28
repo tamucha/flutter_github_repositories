@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github_repositories/l10n/app_localizations.dart';
 import 'package:flutter_github_repositories/view_model/search_repositories_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,7 +18,7 @@ class SearchItem extends ConsumerWidget {
       onSubmitted: (value) {
         ref.read(githubRepositoriesViewModelProvider.notifier).search(value);
       },
-      hintText: "リポジトリを検索",
+      hintText: AppLocalizations.of(context)!.searchRepositories,
       padding: const WidgetStatePropertyAll<EdgeInsets>(
         EdgeInsets.symmetric(horizontal: 16.0),
       ),

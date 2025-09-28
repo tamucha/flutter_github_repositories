@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_github_repositories/router.dart';
 import 'package:flutter_github_repositories/view_model/dark_mode_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import 'l10n/app_localizations.dart';
 import 'flavors.dart';
 
 class App extends ConsumerWidget {
@@ -31,6 +31,9 @@ class App extends ConsumerWidget {
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Color(0xFF303030),
       ),
+
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
     );
   }
 }

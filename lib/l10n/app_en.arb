@@ -1,0 +1,6 @@
+{
+  "helloWorld": "Hello World!!",
+  "searchRepositories": "Search repositories",
+  "pleaseSearchRepositories": "Please search repositories.",
+  "noMatchingRepositories": "No matching repositories found."
+}

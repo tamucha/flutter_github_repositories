@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github_repositories/l10n/app_localizations.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -26,10 +27,14 @@ class GithubRipositoryListView extends HookConsumerWidget {
     return githubRepositoriesViewModel.when(
       data: (data) {
         if (data == null) {
-          return const Center(child: Text("リポジトリを検索してください"));
+          return Center(
+            child: Text(AppLocalizations.of(context)!.pleaseSearchRepositories),
+          );
         }
         if (data.items.isEmpty) {
-          return const Center(child: Text("該当するリポジトリがありません"));
+          return Center(
+            child: Text(AppLocalizations.of(context)!.noMatchingRepositories),
+          );
         }
 
         currentPage = data.page;
