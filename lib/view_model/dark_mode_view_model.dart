@@ -16,7 +16,7 @@ class DarkModeViewModel extends _$DarkModeViewModel {
   }
 
   /// ダークモード/ライトモードの切り替えを行い、アプリ内保存する
-  void toggle() async {
+  Future<void> toggle() async {
     final value = state.value != null ? !state.value! : false;
     state = AsyncValue.data(value);
     final sharedPreferences = await SharedPreferences.getInstance();

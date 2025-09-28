@@ -36,7 +36,7 @@ final class DarkModeViewModelProvider
   DarkModeViewModel create() => DarkModeViewModel();
 }
 
-String _$darkModeViewModelHash() => r'8806609ad2704dcce074854c8e1142d89f14958f';
+String _$darkModeViewModelHash() => r'f9936306c9b2e98b00007d98b957ba9590536b96';
 
 /// ダークモード/ライトモードの設定を行い、状態を管理する
 

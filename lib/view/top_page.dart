@@ -14,7 +14,7 @@ class TopPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "GitHub Repositories",
+          'GitHub Repositories',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         toolbarHeight: kToolbarHeight * 0.8,
